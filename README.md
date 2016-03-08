@@ -2,7 +2,7 @@
 
 Theme for zsh based on ES6 arrow functions.
 
-![](https://cldup.com/evltoMMDGb.png)
+![](https://cldup.com/6OAAcYnG85.png)
 
 ## How to use
 
