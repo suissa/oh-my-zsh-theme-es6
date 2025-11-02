@@ -1,55 +1,72 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "final_space": true,
+  "console_title_template": "{{ .Folder }}",
+  "transient_prompt": {
+    "template": "➜ ",
+    "foreground": "#98c379"
+  },
   "blocks": [
     {
       "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "type": "path",
+          "type": "venv",
           "style": "plain",
-          "foreground": "magenta",
+          "foreground": "#61afef",
+          "template": "({{ .Name }}) ",
           "properties": {
-            "style": "folder",
-            "max_depth": 2
+            "cache_duration": "none"
           }
         },
         {
-          "type": "git",
+          "type": "path",
           "style": "plain",
-          "foreground": "red",
+          "foreground": "#c678dd",
+          "template": "({{ .Folder }}) ",
           "properties": {
-            "prefix": " git:(",
-            "suffix": ")",
-            "branch_icon": "",
-            "display_status": true,
-            "display_stash_count": false,
-            "display_upstream_icon": false
+            "cache_duration": "none",
+            "style": "folder"
           }
         },
         {
           "type": "status",
           "style": "plain",
-          "foreground": "green",
-          "background": "",
+          "foreground": "#98c379",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#e06c75{{ end }}"
+          ],
+          "template": "{{ if eq .Code 0 }}➜{{ else }}✗{{ end }} ",
           "properties": {
             "always_enabled": true,
-            "ok_icon": "➜",
-            "error_icon": "➜",
             "display_exit_code": false
-          },
-          "templates": {
-            "success": "{{ .OkIcon }}",
-            "failure": "{{ .ErrorIcon }}"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#e06c75",
+          "template": "{{ if .HEAD }}(git:( {{ .HEAD }}{{ if .Working.Changed }} ✗{{ else }} ✓{{ end }} )){{ end }} ",
+          "properties": {
+            "branch_icon": " ",
+            "display_status": false,
+            "display_stash_count": false,
+            "display_upstream_icon": false,
+            "fetch_stash_count": false
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "template": "➜ ",
+          "properties": {
+            "cache_duration": "none"
           }
         }
       ]
     }
   ],
-  "transient_prompt": {
-    "template": "{{ .Folder }} ",
-    "foreground": "magenta"
-  },
-  "version": 2
+  "final_space": true,
+  "version": 3
 }
