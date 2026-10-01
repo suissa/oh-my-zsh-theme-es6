@@ -1,38 +1,52 @@
-# oh-my-zsh-theme-es6
+# Git JJ Flow
 
-Theme for Zsh based on ES6 arrow functions, with Git and Jujutsu support.
+A Zsh and Oh My Posh theme with a compact arrow prompt for **Git** and **Jujutsu**.
 
 ![](https://cldup.com/6OAAcYnG85.png)
 
-## How to use
+## Zsh / Oh My Zsh
 
-Copy the file `es6.zsh-theme` to your oh-my-zsh theme folder `~/.oh-my-zsh/themes`.
-
-Or run in Terminal:
+Install the theme:
 
 ```sh
-curl -o ~/.oh-my-zsh/themes/es6.zsh-theme https://raw.githubusercontent.com/suissa/oh-my-zsh-theme-es6/master/es6.zsh-theme
+curl -Lo ~/.oh-my-zsh/themes/git-jj-flow.zsh-theme \
+  https://raw.githubusercontent.com/suissa/oh-my-zsh-theme-es6/master/git-jj-flow.zsh-theme
 ```
 
-Set `ZSH_THEME="es6"` in your `~/.zshrc` file.
+Set this in `~/.zshrc`:
 
-Restart your terminal or run: `source ~/.zshrc`.
+```sh
+ZSH_THEME="git-jj-flow"
+```
 
-### Jujutsu
+Restart the terminal or run `source ~/.zshrc`.
 
-When `jj` is installed and the current directory is a Jujutsu workspace (including a colocated Git repository), the prompt shows Jujutsu instead of Git:
+### Jujutsu behavior
+
+When `jj` is installed and the directory is a Jujutsu workspace, including a colocated Git repository, Jujutsu takes precedence:
 
 ```
 (project) ➜ (jj:(tmqpnxto 5bb8e58e dockerizando) ✗) ➜
 ```
 
-- The change ID, commit ID and first-line description identify the working-copy change.
-- `✗` indicates uncommitted working-copy changes.
-- The theme calls Jujutsu with `--ignore-working-copy`, so rendering the prompt does not snapshot or modify the workspace.
-- Outside Jujutsu, the original Git prompt remains unchanged.
+- Shows the working-copy change ID, commit ID and description.
+- `✗` means there are working-copy changes.
+- Calls use `jj --ignore-working-copy`: rendering the prompt never snapshots or mutates the workspace.
+- Outside a Jujutsu workspace, the regular Git prompt is used.
 
-### Oh My Posh
+## Oh My Posh
 
-Both `es6.zsh-theme.json` and `zsh-style.omp.json` now include the native `jujutsu` segment. It disables the Git segment in colocated repositories, avoiding duplicate source-control information.
+Download the JSON configuration:
+
+```sh
+curl -Lo ~/.config/oh-my-posh/git-jj-flow.zsh-theme.json \
+  https://raw.githubusercontent.com/suissa/oh-my-zsh-theme-es6/master/git-jj-flow.zsh-theme.json
+```
+
+It uses Oh My Posh's native `jujutsu` segment and disables Git in colocated repositories, so source-control information is never duplicated.
+
+## Legacy filenames
+
+`es6.zsh-theme`, `es6.zsh-theme.json` and `zsh-style.omp.json` remain available for compatibility. New installations should use `git-jj-flow`.
 
 Be happy.
