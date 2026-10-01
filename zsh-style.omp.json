@@ -25,8 +25,21 @@
             "branch_icon": "",
             "display_status": true,
             "display_stash_count": false,
-            "display_upstream_icon": false
+            "display_upstream_icon": false,
+            "disable_with_jj": true
           }
+        },
+        {
+          "type": "jujutsu",
+          "style": "plain",
+          "foreground": "cyan",
+          "properties": {
+            "prefix": " jj:(",
+            "suffix": ")",
+            "ignore_working_copy": true,
+            "change_id_min_len": 8
+          },
+          "template": "{{ .ChangeID }}{{ if .ClosestBookmarks }} {{ .ClosestBookmarks }}{{ end }}{{ if .Working.Changed }} {{ .Working.String }}{{ end }}"
         },
         {
           "type": "status",
