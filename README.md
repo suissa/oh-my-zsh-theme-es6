@@ -30,9 +30,20 @@ When `jj` is installed and the directory is a Jujutsu workspace, including a col
 ```
 
 - Shows the working-copy change ID, commit ID and description.
-- `✗` means there are working-copy changes.
+- `✗` means there are working-copy changes; a clean working copy shows `✓` in green.
 - Calls use `jj --ignore-working-copy`: rendering the prompt never snapshots or mutates the workspace.
 - Outside a Jujutsu workspace, the regular Git prompt is used.
+
+### Animations
+
+The Zsh theme is animated without any external dependency:
+
+- At startup it plays one short `· → ∙ → ➜` entrance.
+- Each command return briefly pulses the prompt arrows: cyan after success, magenta after failure, then green/red.
+- A `git add …` that runs longer than 450 ms shows a transient spinner while Git stages files. It is intentionally restricted to `git add`, which is normally silent; commands that write their own output are never animated.
+- Once the repository is clean, the old `✗` position becomes a green `✓`.
+
+Set `GIT_JJ_FLOW_ANIMATIONS=0` **before** Oh My Zsh is initialized to disable all motion.
 
 ## Oh My Posh
 
